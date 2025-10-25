@@ -11,12 +11,27 @@ const InvitationCard: React.FC<InvitationCardProps> = ({ onOpen }) => {
     <Box
       sx={{
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
         minHeight: '100vh',
         paddingTop: '40px',
+        gap: '20px',
       }}
     >
+      <Typography
+        variant="h6"
+        sx={{
+          fontFamily: 'serif',
+          color: '#5c5c5c',
+          textAlign: 'center',
+          marginBottom: '10px',
+          fontSize: '26px',
+          fontWeight: '400',
+        }}
+      >
+        Haz click en abrir para ver el contenido del sobre
+      </Typography>
       <Box
         sx={{
           position: 'relative',
@@ -42,7 +57,6 @@ const InvitationCard: React.FC<InvitationCardProps> = ({ onOpen }) => {
             boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
           }}
         />
-
       </Box>
     </Box>
   );
