@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, Typography } from '@mui/material';
+import { Box, Card, CardContent, Typography } from '@mui/material';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
 interface InvitationCardProps {
@@ -8,31 +8,43 @@ interface InvitationCardProps {
 
 const InvitationCard: React.FC<InvitationCardProps> = ({ onOpen }) => {
   return (
-    <Card
+    <Box
       sx={{
-        maxWidth: 345,
-        margin: 'auto',
-        marginTop: '10vh',
-        textAlign: 'center',
-        cursor: 'pointer',
-        boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)',
-        transition: '0.3s',
-        '&:hover': {
-          boxShadow: '0 12px 20px 0 rgba(0,0,0,0.3)',
-        },
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        minHeight: '100vh',
+        paddingTop: '40px',
       }}
-      onClick={onOpen}
     >
-      <CardContent sx={{ padding: '40px' }}>
-        <MailOutlineIcon sx={{ fontSize: 60, color: '#d4af37' }} />
-        <Typography variant="h5" component="div" sx={{ marginTop: '20px', fontFamily: 'serif' }}>
-          Tienes una invitación
-        </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ marginTop: '10px' }}>
-          Haz clic para abrir
-        </Typography>
-      </CardContent>
-    </Card>
+      <Box
+        sx={{
+          position: 'relative',
+          width: '400px',
+          height: '500px',
+          cursor: 'pointer',
+          transition: 'transform 0.3s ease',
+          '&:hover': {
+            transform: 'scale(1.05)',
+          },
+        }}
+        onClick={onOpen}
+      >
+        <Box
+          component="img"
+          src="/sobre.png"
+          alt="Sobre de invitación"
+          sx={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            borderRadius: '8px',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+          }}
+        />
+
+      </Box>
+    </Box>
   );
 };
 
