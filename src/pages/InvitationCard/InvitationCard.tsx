@@ -1,7 +1,12 @@
+import React from 'react';
 import { Card, CardContent, Typography } from '@mui/material';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
-const InvitationCard = ({ onOpen }) => {
+interface InvitationCardProps {
+  onOpen: () => void;
+}
+
+const InvitationCard: React.FC<InvitationCardProps> = ({ onOpen }) => {
   return (
     <Card
       sx={{

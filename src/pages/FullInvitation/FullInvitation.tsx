@@ -1,6 +1,7 @@
+import React from 'react';
 import { Container, Typography, Button, Box } from '@mui/material';
 
-const FullInvitation = () => {
+const FullInvitation: React.FC = () => {
   return (
     <Container maxWidth="md" sx={{ textAlign: 'center', padding: '40px 20px', backgroundColor: '#fdfaf6', borderRadius: '15px', boxShadow: '0 8px 16px 0 rgba(0,0,0,0.2)' }}>
       <Box
