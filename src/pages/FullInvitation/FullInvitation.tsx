@@ -11,6 +11,7 @@ import Step8 from './components/Step8';
 import Step9 from './components/Step9';
 import Step10 from './components/Step10';
 import Step11 from './components/Step11';
+import Step12 from './components/Step12';
 
 
 const FullInvitation: React.FC = () => {
@@ -36,6 +37,7 @@ const FullInvitation: React.FC = () => {
       <Step9 />
       <Step10 />
       <Step11 />
+      <Step12 />
     </Box>
   );
 };
