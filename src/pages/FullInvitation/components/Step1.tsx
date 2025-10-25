@@ -132,7 +132,7 @@ const Step1: React.FC = () => {
           sx={{ 
             fontFamily: '"Cormorant Garamond", serif',
             color: '#2c3e50',
-            fontSize: '24px',
+            fontSize: '26px',
             fontWeight: 400,
             marginBottom: '10px',
           }}
@@ -144,7 +144,7 @@ const Step1: React.FC = () => {
           sx={{ 
             fontFamily: '"Cormorant Garamond", serif',
             color: '#5a6c7d',
-            fontSize: '19px',
+            fontSize: '21px',
             marginBottom: '10px',
             fontWeight: 600,
           }}
@@ -156,7 +156,7 @@ const Step1: React.FC = () => {
           sx={{ 
             fontFamily: '"Cormorant Garamond", serif',
             color: '#5a6c7d',
-            fontSize: '18px',
+            fontSize: '20px',
             fontStyle: 'italic',
             fontWeight: 600,
             paddingBottom: '30px',
