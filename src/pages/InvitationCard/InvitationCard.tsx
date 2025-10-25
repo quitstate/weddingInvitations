@@ -1,6 +1,5 @@
 import React from 'react';
-import { Box, Card, CardContent, Typography } from '@mui/material';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import { Box, Typography } from '@mui/material';
 
 interface InvitationCardProps {
   onOpen: () => void;
@@ -22,7 +21,7 @@ const InvitationCard: React.FC<InvitationCardProps> = ({ onOpen }) => {
       <Typography
         variant="h6"
         sx={{
-          fontFamily: 'serif',
+          fontFamily: '"Cormorant Garamond", serif',
           color: '#5c5c5c',
           textAlign: 'center',
           marginBottom: '10px',
