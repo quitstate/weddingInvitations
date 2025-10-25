@@ -35,12 +35,12 @@ const FullInvitation: React.FC = () => {
       <Step5 />
       <Step6 />
       <Step7 />
-      <Step8 />
       <Step9 />
+      <Step8 />
       <Step10 />
       <Step11 />
-      <Step12 />
       <Step13 />
+      <Step12 />
       <Step14 />
     </Box>
   );
