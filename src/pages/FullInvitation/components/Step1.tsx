@@ -73,7 +73,7 @@ const Step1: React.FC = () => {
           lineHeight: 1.2,
         }}
       >
-        Ronald & Avigail
+        Avigail & Ronald
       </Typography>
       <Box
         sx={{

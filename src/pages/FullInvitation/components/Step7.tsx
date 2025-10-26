@@ -15,7 +15,7 @@ const Step7: React.FC = () => {
 
   const events: TimelineEvent[] = [
     { time: '7:00 pm', title: 'Ceremonia\nReligiosa', icon: '⛪' },
-    { time: '9:00 pm', title: 'Cocktail', icon: '🥂' },
+    { time: '9:00 pm', title: 'Hotel\nKristoff', icon: '🏨' },
     { time: '9:30 pm', title: 'Celebración', icon: '🍽️' },
     { time: '10:00 pm', title: 'A bailar', icon: '🎵' },
   ];
@@ -35,7 +35,7 @@ const Step7: React.FC = () => {
       });
     };
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check initial position
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

@@ -39,7 +39,7 @@ const Step14: React.FC = () => {
               color: '#2c3e50',
             }}
           >
-            Ronald Vezga
+            Ronald Vezga y Avigail Araujo
           </Box>
         </Typography>
       </Box>

@@ -3,9 +3,9 @@ import { Container, Box } from '@mui/material';
 
 const Step13: React.FC = () => {
   const photos = [
-    '/Basilica.webp',
-    '/Basilica.webp',
-    '/Basilica.webp',
+    '/Foto4.jpeg',
+    '/Foto3.jpeg',
+    '/Foto1.jpeg',
   ];
 
   return (
@@ -38,7 +38,7 @@ const Step13: React.FC = () => {
             alt={`Foto ${index + 1}`}
             sx={{
               width: '100%',
-              height: 'auto',
+              height: '500px',
               display: 'block',
               objectFit: 'cover',
             }}
