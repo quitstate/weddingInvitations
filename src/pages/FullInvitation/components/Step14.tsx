@@ -13,7 +13,6 @@ const Step14: React.FC = () => {
         overflow: 'visible',
         width: { xs: '100%', md: '500px' },
         maxWidth: { xs: '100%', md: '500px' },
-        margin: '0 auto',
       }}
     >
       <Box
@@ -29,6 +28,7 @@ const Step14: React.FC = () => {
             fontSize: { xs: '1.1rem', md: '1.2rem' },
             color: '#5a5a5a',
             lineHeight: 1.6,
+            marginBottom: { xs: '50px', md: '0px' },
           }}
         >
           Copyright 2025 |{'  '}

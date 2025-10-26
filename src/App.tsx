@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import InvitationCard from './pages/InvitationCard/InvitationCard';
 import FullInvitation from './pages/FullInvitation/FullInvitation';
 import './App.css';
 
 function App(): React.ReactElement {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const handleOpenInvitation = (): void => {
     setIsOpen(true);
   };
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.play().catch((error) => {
+        console.log('Autoplay prevented:', error);
+      });
+    }
+  }, []);
 
   return (
     <div className="App">
@@ -17,6 +26,22 @@ function App(): React.ReactElement {
       ) : (
         <FullInvitation />
       )}
+      <audio
+        ref={audioRef}
+        controls
+        loop
+        style={{
+          position: 'fixed',
+          bottom: '20px',
+          right: '20px',
+          zIndex: 9999,
+          borderRadius: '8px',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+        }}
+      >
+        <source src="/MyUniverse.mp3" type="audio/mpeg" />
+        Tu navegador no soporta el elemento de audio.
+      </audio>
     </div>
   );
 }
