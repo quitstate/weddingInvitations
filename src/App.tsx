@@ -44,7 +44,7 @@ function App(): React.ReactElement {
           boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
         }}
       >
-        <source src="/MyUniverse.mp3" type="audio/mpeg" />
+        <source src="/BeautifulThings.mp3" type="audio/mpeg" />
         Tu navegador no soporta el elemento de audio.
       </audio>
     </div>

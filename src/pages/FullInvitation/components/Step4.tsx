@@ -71,9 +71,9 @@ const Step4: React.FC = () => {
             lineHeight: 1.8,
           }}
         >
-          Sr. Jose Avilio Araujo Briceño
+          Sr. Jose Avilio Araujo Briceño †
           <br />
-          Sra. Maria Jackelin Paredes Peña
+          Sra. Maria Jackelin Paredes de Abreu
         </Typography>
       </Box>
       <Box sx={{ marginBottom: '40px' }}>
