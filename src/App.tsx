@@ -9,12 +9,17 @@ function App(): React.ReactElement {
 
   const handleOpenInvitation = (): void => {
     setIsOpen(true);
+    if (audioRef.current) {
+      audioRef.current.play().catch((error) => {
+        console.log('Audio play prevented:', error);
+      });
+    }
   };
 
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.play().catch((error) => {
-        console.log('Autoplay prevented:', error);
+        console.log('Autoplay prevented, will play on user interaction:', error);
       });
     }
   }, []);
