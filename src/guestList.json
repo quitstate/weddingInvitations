@@ -95,7 +95,7 @@
     "isConfirm": false
   },
   {
-    "name": "Tio Gordo Paredes",
+    "name": "Jose Paredes",
     "idGroup": 7,
     "isConfirm": false
   },
@@ -135,7 +135,7 @@
     "isConfirm": false
   },
     {
-    "name": "Chinolo",
+    "name": "Atilio Avendaño",
     "idGroup": 9,
     "isConfirm": false
   },
@@ -145,7 +145,7 @@
     "isConfirm": false
   },
   {
-    "name": "David",
+    "name": "David Avendaño",
     "idGroup": 10,
     "isConfirm": false
   },
@@ -211,6 +211,11 @@
   },
   {
     "name": "Eliza Castillo",
+    "idGroup": 18,
+    "isConfirm": false
+  },
+  {
+    "name": "Jose Castillo",
     "idGroup": 18,
     "isConfirm": false
   },
