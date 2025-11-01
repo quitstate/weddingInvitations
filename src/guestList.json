@@ -275,7 +275,7 @@
     "isConfirm": false
   },
   {
-    "name": "Adiana Martinez",
+    "name": "Adriana Martinez",
     "idGroup": 24,
     "isConfirm": false
   },
@@ -392,6 +392,11 @@
     {
     "name": "Olga Briceño",
     "idGroup": 38,
+    "isConfirm": false
+  },
+    {
+    "name": "Ofelia Rueda",
+    "idGroup": 39,
     "isConfirm": false
   }
 ]
