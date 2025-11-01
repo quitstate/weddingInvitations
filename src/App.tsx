@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 import InvitationCard from './pages/InvitationCard/InvitationCard';
 import FullInvitation from './pages/FullInvitation/FullInvitation';
 import './App.css';
 
-function App(): React.ReactElement {
+const InvitationWithGroup: React.FC<{ audioRef: React.RefObject<HTMLAudioElement | null> }> = ({ audioRef }) => {
+  const { idGroup } = useParams<{ idGroup: string }>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const audioSource = '/QueSuerteTenerte.mp3';
+  const groupId = idGroup ? parseInt(idGroup, 10) : undefined;
 
   const handleOpenInvitation = (): void => {
     setIsOpen(true);
@@ -17,6 +17,36 @@ function App(): React.ReactElement {
       });
     }
   };
+
+  return !isOpen ? (
+    <InvitationCard onOpen={handleOpenInvitation} />
+  ) : (
+    <FullInvitation idGroup={groupId} />
+  );
+};
+
+const InvitationHome: React.FC<{ audioRef: React.RefObject<HTMLAudioElement | null> }> = ({ audioRef }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const handleOpenInvitation = (): void => {
+    setIsOpen(true);
+    if (audioRef.current) {
+      audioRef.current.play().catch((error) => {
+        console.log('Audio play prevented:', error);
+      });
+    }
+  };
+
+  return !isOpen ? (
+    <InvitationCard onOpen={handleOpenInvitation} />
+  ) : (
+    <FullInvitation />
+  );
+};
+
+function App(): React.ReactElement {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const audioSource = '/QueSuerteTenerte.mp3';
 
   useEffect(() => {
     if (audioRef.current) {
@@ -30,14 +60,8 @@ function App(): React.ReactElement {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={
-            !isOpen ? (
-              <InvitationCard onOpen={handleOpenInvitation} />
-            ) : (
-              <FullInvitation />
-            )
-          } />
-          <Route path="/:idGroup" element={<FullInvitation />} />
+          <Route path="/" element={<InvitationHome audioRef={audioRef} />} />
+          <Route path="/:idGroup" element={<InvitationWithGroup audioRef={audioRef} />} />
         </Routes>
         <audio
           ref={audioRef}

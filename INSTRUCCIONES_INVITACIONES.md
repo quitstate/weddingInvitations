@@ -19,6 +19,11 @@ http://localhost:3000/{idGroup}
 - Grupo 5: `http://localhost:3000/5`
 - Grupo 30: `http://localhost:3000/30`
 
+**Importante:** Cuando accedes con un ID de grupo (ejemplo: `/1`):
+1. Primero se muestra la animación de la tarjeta de invitación (el sobre)
+2. Al hacer clic en "Abrir Invitación", se despliega la invitación completa
+3. En el Step8 (confirmación), se mostrarán SOLO los invitados del grupo especificado
+
 ### 2. Grupos Disponibles
 
 Según tu archivo `guestList.json`, tienes grupos del 1 al 35. Cada grupo contiene diferentes invitados:
