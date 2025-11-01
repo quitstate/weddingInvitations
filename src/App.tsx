@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import InvitationCard from './pages/InvitationCard/InvitationCard';
 import FullInvitation from './pages/FullInvitation/FullInvitation';
 import './App.css';
@@ -26,29 +27,36 @@ function App(): React.ReactElement {
   }, []);
 
   return (
-    <div className="App">
-      {!isOpen ? (
-        <InvitationCard onOpen={handleOpenInvitation} />
-      ) : (
-        <FullInvitation />
-      )}
-      <audio
-        ref={audioRef}
-        controls
-        loop
-        style={{
-          position: 'fixed',
-          bottom: '20px',
-          right: '20px',
-          zIndex: 9999,
-          borderRadius: '8px',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-        }}
-      >
-        <source src={audioSource} type="audio/mpeg" />
-        Tu navegador no soporta el elemento de audio.
-      </audio>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={
+            !isOpen ? (
+              <InvitationCard onOpen={handleOpenInvitation} />
+            ) : (
+              <FullInvitation />
+            )
+          } />
+          <Route path="/:idGroup" element={<FullInvitation />} />
+        </Routes>
+        <audio
+          ref={audioRef}
+          controls
+          loop
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            zIndex: 9999,
+            borderRadius: '8px',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+          }}
+        >
+          <source src={audioSource} type="audio/mpeg" />
+          Tu navegador no soporta el elemento de audio.
+        </audio>
+      </div>
+    </Router>
   );
 }
 

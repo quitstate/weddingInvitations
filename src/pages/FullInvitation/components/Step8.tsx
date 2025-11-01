@@ -1,30 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Container, Typography, Box, Checkbox, Button, FormControlLabel, FormGroup } from '@mui/material';
+import guestList from '../../../guestList.json';
 
-const Step8: React.FC = () => {
-  const familyName = 'Familia Maldonado Garza';
-  const [guests, setGuests] = useState({
-    guest1: false,
-    guest2: false,
-    guest3: false,
-    guest4: false,
-    noAttend: false,
-  });
+interface Guest {
+  name: string;
+  idGroup: number;
+  isConfirm: boolean;
+}
+
+interface Step8Props {
+  idGroup?: number;
+}
+
+const Step8: React.FC<Step8Props> = ({ idGroup }) => {
+  const filteredGuests = useMemo(() => {
+    if (!idGroup) return [];
+    return (guestList as Guest[]).filter((guest) => guest.idGroup === idGroup);
+  }, [idGroup]);
+
+  const initialGuestState = useMemo(() => {
+    const state: { [key: string]: boolean } = { noAttend: false };
+    filteredGuests.forEach((_, index) => {
+      state[`guest${index}`] = false;
+    });
+    return state;
+  }, [filteredGuests]);
+
+  const [guests, setGuests] = useState(initialGuestState);
+  const familyName = filteredGuests.length > 0 
+    ? `Grupo ${idGroup}` 
+    : 'Familia';
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
     
     if (name === 'noAttend' && checked) {
-      // Si marca "No podremos asistir", desmarca todos los demás
-      setGuests({
-        guest1: false,
-        guest2: false,
-        guest3: false,
-        guest4: false,
-        noAttend: true,
+      const resetState: { [key: string]: boolean } = { noAttend: true };
+      filteredGuests.forEach((_, index) => {
+        resetState[`guest${index}`] = false;
       });
+      setGuests(resetState);
     } else if (name !== 'noAttend') {
-      // Si marca cualquier invitado, desmarca "No podremos asistir"
       setGuests({
         ...guests,
         [name]: checked,
@@ -40,31 +56,59 @@ const Step8: React.FC = () => {
 
   const handleConfirm = () => {
     const selectedGuests: string[] = [];
-    
-    if (guests.guest1) selectedGuests.push('Sara Maldonado Garza');
-    if (guests.guest2) selectedGuests.push('Felipe Ruiz Garza');
-    if (guests.guest3) selectedGuests.push('Laura Ruiz Garza');
-    if (guests.guest4) selectedGuests.push('Carlos Ruiz Garza');
-    
+    filteredGuests.forEach((guest, index) => {
+      if (guests[`guest${index}`]) {
+        selectedGuests.push(guest.name);
+      }
+    });
     let message = '';
-    
     if (guests.noAttend) {
-      message = `Hola, somos la ${familyName}. Lamentablemente no podremos asistir a la boda.`;
+      message = `Hola, somos del ${familyName}. Lamentablemente no podremos asistir a la boda.`;
     } else if (selectedGuests.length > 0) {
-      message = `Hola, somos la ${familyName}. Confirmamos asistencia de: ${selectedGuests.join(', ')}`;
+      message = `Hola, somos del ${familyName}. Confirmamos asistencia de: ${selectedGuests.join(', ')}`;
     } else {
       alert('Por favor selecciona al menos una opción');
       return;
     }
-    
-    // Crear URL de WhatsApp
-    const phoneNumber = '584125471717'; // Reemplaza con tu número de WhatsApp
+    const phoneNumber = '34672893477';
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     
-    // Abrir WhatsApp
     window.open(whatsappUrl, '_blank');
   };
+
+  if (!idGroup || filteredGuests.length === 0) {
+    return (
+      <Container
+        sx={{
+          background: 'linear-gradient(145deg, #fdfbf7 0%, #f9f6f2 100%)',
+          boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+          padding: { xs: '50px 30px', md: '70px 50px' },
+          textAlign: 'center',
+          position: 'relative',
+          overflow: 'hidden',
+          width: { xs: '100%', md: '500px' },
+          maxWidth: { xs: '100%', md: '500px' },
+          margin: '0 auto',
+          minHeight: '600px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography
+          sx={{
+            fontFamily: '"Cormorant Garamond", serif',
+            fontSize: { xs: '1.3rem', md: '1.5rem' },
+            color: '#2c3e50',
+            fontWeight: 600,
+          }}
+        >
+          No se encontraron invitados para este grupo
+        </Typography>
+      </Container>
+    );
+  }
 
   return (
     <Container
@@ -84,7 +128,6 @@ const Step8: React.FC = () => {
         justifyContent: 'center',
       }}
     >
-      {/* Marco dorado */}
       <Box
         sx={{
           position: 'absolute',
@@ -98,15 +141,12 @@ const Step8: React.FC = () => {
           zIndex: 0,
         }}
       />
-
-      {/* Contenido */}
       <Box
         sx={{
           position: 'relative',
           zIndex: 1,
         }}
       >
-        {/* Título */}
         <Typography
           sx={{
             fontFamily: '"Alex Brush", cursive',
@@ -118,8 +158,6 @@ const Step8: React.FC = () => {
         >
           Invitación para:
         </Typography>
-
-        {/* Nombre de la familia */}
         <Typography
           sx={{
             fontFamily: '"Cormorant Garamond", serif',
@@ -131,8 +169,6 @@ const Step8: React.FC = () => {
         >
           {familyName}
         </Typography>
-
-        {/* Lista de invitados */}
         <FormGroup
           sx={{
             textAlign: 'left',
@@ -140,114 +176,36 @@ const Step8: React.FC = () => {
             paddingLeft: { xs: '20px', md: '60px' },
           }}
         >
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="guest1"
-                checked={guests.guest1}
-                onChange={handleCheckboxChange}
-                sx={{
-                  color: '#d4af37',
-                  '&.Mui-checked': {
+          {filteredGuests.map((guest, index) => (
+            <FormControlLabel
+              key={index}
+              control={
+                <Checkbox
+                  name={`guest${index}`}
+                  checked={guests[`guest${index}`] || false}
+                  onChange={handleCheckboxChange}
+                  sx={{
                     color: '#d4af37',
-                  },
-                }}
-              />
-            }
-            label={
-              <Typography
-                sx={{
-                  fontFamily: '"Cormorant Garamond", serif',
-                  fontSize: { xs: '1rem', md: '1.1rem' },
-                  color: '#2c3e50',
-                }}
-              >
-                Sara Maldonado Garza
-              </Typography>
-            }
-            sx={{ marginBottom: '15px' }}
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="guest2"
-                checked={guests.guest2}
-                onChange={handleCheckboxChange}
-                sx={{
-                  color: '#d4af37',
-                  '&.Mui-checked': {
-                    color: '#d4af37',
-                  },
-                }}
-              />
-            }
-            label={
-              <Typography
-                sx={{
-                  fontFamily: '"Cormorant Garamond", serif',
-                  fontSize: { xs: '1rem', md: '1.1rem' },
-                  color: '#2c3e50',
-                }}
-              >
-                Felipe Ruiz Garza
-              </Typography>
-            }
-            sx={{ marginBottom: '15px' }}
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="guest3"
-                checked={guests.guest3}
-                onChange={handleCheckboxChange}
-                sx={{
-                  color: '#d4af37',
-                  '&.Mui-checked': {
-                    color: '#d4af37',
-                  },
-                }}
-              />
-            }
-            label={
-              <Typography
-                sx={{
-                  fontFamily: '"Cormorant Garamond", serif',
-                  fontSize: { xs: '1rem', md: '1.1rem' },
-                  color: '#2c3e50',
-                }}
-              >
-                Laura Ruiz Garza
-              </Typography>
-            }
-            sx={{ marginBottom: '15px' }}
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="guest4"
-                checked={guests.guest4}
-                onChange={handleCheckboxChange}
-                sx={{
-                  color: '#d4af37',
-                  '&.Mui-checked': {
-                    color: '#d4af37',
-                  },
-                }}
-              />
-            }
-            label={
-              <Typography
-                sx={{
-                  fontFamily: '"Cormorant Garamond", serif',
-                  fontSize: { xs: '1rem', md: '1.1rem' },
-                  color: '#2c3e50',
-                }}
-              >
-                Carlos Ruiz Garza
-              </Typography>
-            }
-            sx={{ marginBottom: '15px' }}
-          />
+                    '&.Mui-checked': {
+                      color: '#d4af37',
+                    },
+                  }}
+                />
+              }
+              label={
+                <Typography
+                  sx={{
+                    fontFamily: '"Cormorant Garamond", serif',
+                    fontSize: { xs: '1rem', md: '1.1rem' },
+                    color: '#2c3e50',
+                  }}
+                >
+                  {guest.name}
+                </Typography>
+              }
+              sx={{ marginBottom: '15px' }}
+            />
+          ))}
           <FormControlLabel
             control={
               <Checkbox
@@ -276,8 +234,6 @@ const Step8: React.FC = () => {
             sx={{ marginBottom: '15px' }}
           />
         </FormGroup>
-
-        {/* Botón Confirmar */}
         <Button
           variant="contained"
           onClick={handleConfirm}

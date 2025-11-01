@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { Box } from '@mui/material';
 import Step1 from './components/Step1';
 import Step2 from './components/Step2';
@@ -17,6 +18,9 @@ import Step14 from './components/Step14';
 
 
 const FullInvitation: React.FC = () => {
+  const { idGroup } = useParams<{ idGroup: string }>();
+  const groupId = idGroup ? parseInt(idGroup, 10) : undefined;
+
   return (
     <Box
       sx={{
@@ -36,7 +40,7 @@ const FullInvitation: React.FC = () => {
       <Step6 />
       <Step7 />
       <Step9 />
-      <Step8 />
+      <Step8 idGroup={groupId} />
       <Step10 />
       <Step11 />
       <Step13 />
