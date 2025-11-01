@@ -73,7 +73,7 @@ const Step11: React.FC = () => {
             margin: "0 auto 40px auto",
           }}
         >
-          El regalo es opcional, la asistencia obligatoria pero si quieres tener
+          La asistencia es obligatoria pero si quieres tener
           un detalle con nosotros te damos algunas ideas.
         </Typography>
         <Accordion

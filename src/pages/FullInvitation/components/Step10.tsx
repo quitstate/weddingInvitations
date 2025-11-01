@@ -60,12 +60,22 @@ const Step10: React.FC = () => {
             color: '#2c3e50',
             fontWeight: 600,
             letterSpacing: '4px',
-            marginBottom: '40px',
           }}
         >
           FORMAL
         </Typography>
-
+        <Typography
+          sx={{
+            fontFamily: '"Cormorant Garamond", serif',
+            fontSize: { xs: '1.3rem', md: '1.5rem' },
+            color: '#2c3e50',
+            fontWeight: 600,
+            letterSpacing: '4px',
+            marginBottom: '40px',
+          }}
+        >
+          Importante: Solo la novia va de blanco
+        </Typography>
         <Box
           sx={{
             display: 'flex',

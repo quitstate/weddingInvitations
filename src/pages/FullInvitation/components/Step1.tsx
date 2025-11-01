@@ -162,7 +162,7 @@ const Step1: React.FC = () => {
             paddingBottom: '30px',
           }}
         >
-          La Basilica, Maracaibo, Venezuela
+          Basilica de Maracaibo, Venezuela
         </Typography>
       </Box>
             <Box

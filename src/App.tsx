@@ -6,6 +6,7 @@ import './App.css';
 function App(): React.ReactElement {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const audioSource = '/QueSuerteTenerte.mp3';
 
   const handleOpenInvitation = (): void => {
     setIsOpen(true);
@@ -44,7 +45,7 @@ function App(): React.ReactElement {
           boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
         }}
       >
-        <source src="/BeautifulThings.mp3" type="audio/mpeg" />
+        <source src={audioSource} type="audio/mpeg" />
         Tu navegador no soporta el elemento de audio.
       </audio>
     </div>
