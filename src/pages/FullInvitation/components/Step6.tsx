@@ -190,7 +190,7 @@ const Step6: React.FC = () => {
           fontWeight: 400,
         }}
       >
-        Recepcion
+        Recepción
       </Typography>
       <Typography
         sx={{
